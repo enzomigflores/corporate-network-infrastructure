@@ -1,4 +1,4 @@
-# Office Network Infrastructure
+# Corporate Network Infrastructure
 
 A sanitized portfolio case study of a managed office network designed around centralized administration, wireless coverage, VLAN segmentation, controlled resource access, managed endpoints, monitoring, and operational maintainability.
 

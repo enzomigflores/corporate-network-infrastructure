@@ -32,15 +32,15 @@ The production environment was implemented using **TP-Link Omada SDN** with an *
 ## High-level topology
 
 ```mermaid
-flowchart TD
-    ISP[Internet / Primary ISP] --> GW[ER707-M2 Gateway]
-    GW --> SW[PoE Switching]
-    GW --> CTRL[OC200 Controller]
-    SW --> AP[EAP610 Access Points]
-    AP --> USERS[Corporate Wireless Clients]
-    AP --> GENERAL[General Network Resources]
-    AP --> RESTRICTED[Restricted Resource VLAN]
-    USERS -->|ACL evaluated| RESTRICTED
+graph TD
+    ISP["Internet / Primary ISP"] --> GW["ER707-M2 Gateway"]
+    GW --> SW["PoE Switching"]
+    GW --> CTRL["OC200 Controller"]
+    SW --> AP["EAP610 Access Points"]
+    AP --> USERS["Corporate Wireless Clients"]
+    AP --> GENERAL["General Network Resources"]
+    AP --> RESTRICTED["Restricted Resource VLAN"]
+    USERS --> RESTRICTED
 ```
 
 ## Logical design
@@ -48,12 +48,12 @@ flowchart TD
 The office network separates normal employee connectivity from resources that require tighter control.
 
 ```mermaid
-flowchart LR
-    USER[Managed Employee Endpoint] --> LAN[Corporate Network]
-    LAN --> INTERNET[Internet Access]
-    USER --> ACL{Gateway ACL}
-    ACL -->|Authorized| RESOURCE[Restricted Resource VLAN]
-    ACL -->|Not Authorized| DENY[Access Denied]
+graph LR
+    USER["Managed Employee Endpoint"] --> LAN["Corporate Network"]
+    LAN --> INTERNET["Internet Access"]
+    USER --> ACL["Gateway ACL"]
+    ACL --> RESOURCE["Authorized: Restricted Resource VLAN"]
+    ACL --> DENY["Not Authorized: Access Denied"]
 ```
 
 A general printer network can remain on the standard office LAN when no dedicated restriction is required. Resources that require selective access are placed in a dedicated VLAN and reached only through explicit gateway policy.
